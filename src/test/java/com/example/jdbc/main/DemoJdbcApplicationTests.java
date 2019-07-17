@@ -1,4 +1,4 @@
-package com.example.jdbc.jdbc;
+package com.example.jdbc.main;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
