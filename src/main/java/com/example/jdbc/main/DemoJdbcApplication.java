@@ -1,8 +1,9 @@
 package com.example.jdbc.main;
 
-import com.example.jdbc.config.ApplicationConfig;
+import com.example.config.ApplicationConfig;
 import com.example.jdbc.dao.CustomerRepository;
 import com.example.jdbc.domain.Customer;
+import com.example.jdbc.service.CustomerService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
@@ -49,6 +50,12 @@ public class DemoJdbcApplication {
 
 		customerList = customerRepository.getAllCustomersWithResultSetExtractorJava8Lambda();
 		System.out.println("List of all customers (ResultSetExtractor + java 8 + lambda) : "+customerList);
+
+
+		// Test transaction
+		CustomerService customerService = context.getBean("customerService", CustomerService.class);
+		customerService.testTransaction();
+
 	}
 
 }

@@ -28,4 +28,8 @@ public interface CustomerRepository {
     List<Customer> getAllCustomersWithResultSetExtractorJava8Lambda();
 
     public int updateAge(Customer customer);
+
+    public int addNewCustomer(Customer customer);
+
+    List<Customer> getOldCustomers(int i);
 }

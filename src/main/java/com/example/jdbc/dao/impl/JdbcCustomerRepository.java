@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowCallbackHandler;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,13 +43,13 @@ public class JdbcCustomerRepository implements CustomerRepository {
 
     @Override
     public Customer getCustomer(int id) {
-        String sql = "select first_name, last_name from customer where id = ?";
+        String sql = "select first_name, last_name, age from customer where id = ?";
         return jdbcTemplate.queryForObject(sql, new PersonMapper(), id);
     }
 
     @Override
     public List<Customer> getAllCustomers() {
-        String sql = "select first_name, last_name from customer";
+        String sql = "select first_name, last_name, age from customer";
         return jdbcTemplate.query(sql, new PersonMapper());
     }
 
@@ -113,9 +114,33 @@ public class JdbcCustomerRepository implements CustomerRepository {
     @Override
     public int updateAge(Customer customer) {
         return jdbcTemplate.update(
-                "update Customer set age=? where id=?",
+                "update customer set age=? where id=?",
         customer.getAge(),
                 customer.getId());
+    }
+
+    @Override
+    public int addNewCustomer(Customer customer) {
+        return jdbcTemplate.update(
+                "insert into customer (first_name, last_name, age) values (?, ?, ?)",
+                customer.getFirstName(),
+                customer.getLastName(),
+                customer.getAge());
+    }
+
+    @Override
+    public List<Customer> getOldCustomers(int age) {
+        return jdbcTemplate.query("select id, first_name, last_name, age from customer where age > ?", new RowMapper<Customer>() {
+            @Override
+            public Customer mapRow(ResultSet rs, int i) throws SQLException {
+                Customer customer = new Customer();
+                customer.setId(rs.getInt("id"));
+                customer.setFirstName(rs.getString("first_name"));
+                customer.setLastName(rs.getString("last_name"));
+                customer.setAge(rs.getInt("age"));
+                return customer;
+            }
+        }, age);
     }
 
 }
