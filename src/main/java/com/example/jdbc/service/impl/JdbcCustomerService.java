@@ -3,11 +3,14 @@ package com.example.jdbc.service.impl;
 import com.example.jdbc.dao.CustomerRepository;
 import com.example.jdbc.domain.Customer;
 import com.example.jdbc.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+@Service
 public class JdbcCustomerService implements CustomerService {
 
+    @Autowired
     private CustomerRepository customerRepository;
 
     public JdbcCustomerService(CustomerRepository customerRepository) {

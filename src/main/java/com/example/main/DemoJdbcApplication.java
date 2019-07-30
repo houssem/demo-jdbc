@@ -19,6 +19,7 @@ public class DemoJdbcApplication {
 
 		ApplicationContext context = SpringApplication.run(DemoJdbcApplication.class);
 		CustomerRepository customerRepository = context.getBean("customerRepository", CustomerRepository.class);
+
 		int count = customerRepository.getCustomerCount();
 		System.out.println("Customer count = "+count);
 

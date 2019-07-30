@@ -25,43 +25,10 @@ import javax.sql.DataSource;
 // @Configuration
 // @SpringBootApplication
 // @SpringBootConfiguration
-// @EnableAutoConfiguration
-// @ComponentScan
+@EnableAutoConfiguration
+@ComponentScan(value = "com.example")
 @EnableTransactionManagement
 public class ApplicationConfig {
-
-    @Bean
-    public CustomerRepository customerRepository(JdbcTemplate jdbcTemplate) {
-        return new JdbcCustomerRepository(jdbcTemplate);
-    }
-
-    @Bean
-    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
-        return new JdbcTemplate(dataSource);
-    }
-
-    @Value(value = "${db.url}")
-    private String url;
-    @Value(value = "${db.username}")
-    private String userName;
-    @Value(value = "${db.password}")
-    private String password;
-
-
-
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource ds = new DriverManagerDataSource();
-        ds.setUrl(url);
-        ds.setUsername(userName);
-        ds.setPassword(password);
-        return ds;
-    }
-
-    @Bean
-    public CustomerService customerService(CustomerRepository customerRepository) {
-        return new JdbcCustomerService(customerRepository);
-    }
 
     @Bean
     public PlatformTransactionManager transactionManager(DataSource dataSource) {
