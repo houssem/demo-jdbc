@@ -1,4 +1,4 @@
-package com.example.jdbc.main;
+package com.example.main;
 
 import com.example.config.ApplicationConfig;
 import com.example.jdbc.dao.CustomerRepository;
@@ -34,27 +34,27 @@ public class DemoJdbcApplication {
 		List<Customer> customers = customerRepository.getAllCustomers();
 		System.out.println("All customers : "+customers);
 
-		customers = customerRepository.getAllCustomersV2();
-		System.out.println("V2 for All customers : "+customers);
-
-		List<Customer> results = new ArrayList<>();
-		customerRepository.generateReports(results);
-		System.out.println("List of all customers to report: "+results);
-
-		results = new ArrayList<>();
-		customerRepository.generateReports_V2(results);
-		System.out.println("V2 List of all customers to report: "+results);
-
-		List<Customer> customerList = customerRepository.getAllCustomersWithResultSetExtractor();
-		System.out.println("List of all customers (ResultSetExtractor) : "+customerList);
-
-		customerList = customerRepository.getAllCustomersWithResultSetExtractorJava8Lambda();
-		System.out.println("List of all customers (ResultSetExtractor + java 8 + lambda) : "+customerList);
-
-
-		// Test transaction
-		CustomerService customerService = context.getBean("customerService", CustomerService.class);
-		customerService.testTransaction();
+//		customers = customerRepository.getAllCustomersV2();
+//		System.out.println("V2 for All customers : "+customers);
+//
+//		List<Customer> results = new ArrayList<>();
+//		customerRepository.generateReports(results);
+//		System.out.println("List of all customers to report: "+results);
+//
+//		results = new ArrayList<>();
+//		customerRepository.generateReports_V2(results);
+//		System.out.println("V2 List of all customers to report: "+results);
+//
+//		List<Customer> customerList = customerRepository.getAllCustomersWithResultSetExtractor();
+//		System.out.println("List of all customers (ResultSetExtractor) : "+customerList);
+//
+//		customerList = customerRepository.getAllCustomersWithResultSetExtractorJava8Lambda();
+//		System.out.println("List of all customers (ResultSetExtractor + java 8 + lambda) : "+customerList);
+//
+//
+//		// Test transaction
+//		CustomerService customerService = context.getBean("customerService", CustomerService.class);
+//		customerService.testTransaction();
 
 	}
 

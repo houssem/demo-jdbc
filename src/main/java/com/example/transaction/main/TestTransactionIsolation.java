@@ -1,17 +1,16 @@
 package com.example.transaction.main;
 
 import com.example.config.ApplicationConfig;
-import com.example.jdbc.main.DemoJdbcApplication;
 import com.example.transaction.service.TransactionIsolationService;
 import com.example.transaction.threads.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
 
-@Import({ApplicationConfig.class})
+//@Import({ApplicationConfig.class})
 public class TestTransactionIsolation {
-    public static void main(String [] args) {
-        ApplicationContext context = SpringApplication.run(DemoJdbcApplication.class);
+    /*public static void main(String [] args) {
+        ApplicationContext context = SpringApplication.run(TestTransactionIsolation.class);
 
         TransactionIsolationService transactionIsolationService = context.getBean("transactionIsolationService", TransactionIsolationService.class);
 
@@ -36,6 +35,6 @@ public class TestTransactionIsolation {
         Thread thread2_C = new Thread(new RepeatableReadThread2(transactionIsolationService));
         thread2_C.start();
 
-    }
+    }*/
 
 }
